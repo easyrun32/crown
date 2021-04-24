@@ -8,9 +8,9 @@ import Contact from "./Pages/Contact/Contact";
 import Checkout from "./Pages/Checkout/Checkout";
 import Signin from "./Pages/SignInAndSingUp/SignInAndSingUp";
 import { auth, createUserProfileDocument } from "./firebase/firebaseUtils";
-import { selectCurrentUser } from "./redux/Users/user-selector";
+import { selectCurrentUser } from "./redux/user/user.selectors";
 import { connect } from "react-redux";
-import { setCurrentUser } from "./redux/Users/user-action";
+import { setCurrentUser } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 const App = ({ setCurrentUser, currentUser }) => {
   const unsubscribeFromAuth = useRef(null);
@@ -32,15 +32,15 @@ const App = ({ setCurrentUser, currentUser }) => {
     <>
       <Header />
       <Switch>
-        <Route exact path='/' component={Homepage} />
-        <Route path='/shop' component={Shop} />
-        <Route exact path='/contact' component={Contact} />
+        <Route exact path="/" component={Homepage} />
+        <Route path="/shop" component={Shop} />
+        <Route exact path="/contact" component={Contact} />
         <Route
           exact
-          path='/signin'
-          render={() => (currentUser ? <Redirect path='/' /> : <Signin />)}
+          path="/signin"
+          render={() => (currentUser ? <Redirect path="/" /> : <Signin />)}
         />
-        <Route path='/checkout' component={Checkout} />
+        <Route path="/checkout" component={Checkout} />
       </Switch>
     </>
   );
